@@ -1,4 +1,7 @@
 { 
   "name": "LRUG Websockets", 
-  "sections": [ {"section":"intro"} ]
+  "sections": [ 
+    {"section":"intro"},
+    {"section":"what"}
+  ]
 }
