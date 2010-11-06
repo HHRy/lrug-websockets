@@ -1,6 +1,10 @@
+!SLIDE center
+
+# Websockets / Cramp
+
 !SLIDE smbullets
 
-# Websockets
+## Websockets
 
 * Persistent connections over HTTP. 
 * Send and receive data fast.
@@ -11,7 +15,7 @@
 
 !SLIDE smbullets
 
-# Some browsers
+## Some browsers
 
 * Chrome
 * Safari > 4

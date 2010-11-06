@@ -2,6 +2,7 @@
   "name": "LRUG Websockets", 
   "sections": [ 
     {"section":"intro"},
-    {"section":"what"}
+    {"section":"what"},
+    {"section":"build"}
   ]
 }
