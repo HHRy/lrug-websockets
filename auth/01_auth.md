@@ -59,8 +59,8 @@
       def authenticate(env)
         request = Rack::Request.new(env)
         token = request.cookies["token"] || request.params["token"]
-        current_account = User.authenticate_by_token(token)
-        current_account ? current_account : nil
+        current_user = User.authenticate_by_token(token)
+        current_user ? current_user : nil
       end
     end
 
