@@ -29,4 +29,3 @@
 - Build basic chat application
 - Authentication (for you Richard Livsey)
 - Extra stuff
-- What about other browsers?

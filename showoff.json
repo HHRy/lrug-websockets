@@ -4,6 +4,8 @@
     {"section":"intro"},
     {"section":"what"},
     {"section":"build"},
-    {"section":"auth"}
+    {"section":"auth"},
+    {"section":"extra"},
+    {"section":"finish"}
   ]
 }

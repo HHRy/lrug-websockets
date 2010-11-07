@@ -7,12 +7,21 @@
 ## Joining and leaving messages
 
     @@@ Ruby
-    def user_connected
-      ...
+    class User
+      def self.connected
+        @connected ||= {}
+      end
     end
+    class Websocket < Websocket::Cramp
+      def user_connected
+        ...
+        User.connected[current_user] = self
+      end
 
-    def user_disconnected
-      ...
+      def user_disconnected
+        ...
+        User.connected.delete current_user
+      end
     end
 
 !SLIDE
@@ -28,18 +37,31 @@
       end
     end
 
-Testing if the connection is up or not, re-connecting?
-- You can implement such a thing checking the readyState of a websocket connection. When this readyState == 1 then connection is available.
-- Do something like - While (connection_is_not_up)... Blah blah blah.
+!SLIDE smbullets
+
+## Frontend testing for a connection
+
+    @@@ Javascript
+
+    this.socket.readyState != 1
+
+- Websocket API defines a `readyState` for the connection status
+- set this up in a javascript interval and then clear on successful connection
 
 
-- To make it easier to know what's going on :
+!SLIDE smbullets
+## debugging http
 
     @@@ Ruby
+    # add to websocket.rb
     Thin::Logging.trace = true
 
-- will dump the HTTP requests and responses.
+- will dump the HTTP requests and responses for handshake
 
-If you want presence bar on the side of the app or something:
-You could use a periodic timer you can send the clients that are signed on to all users.
-like this:
+!SLIDE smbullets
+
+## Other browsers - internet explorer
+
+- A library that uses flash to make the websocket connection
+- `https://github.com/gimite/web-socket-js`
+- Haven't used it yet cause I don't care
