@@ -12,15 +12,21 @@
         @connected ||= {}
       end
     end
+
     class Websocket < Websocket::Cramp
+      ...
       def user_connected
-        ...
         User.connected[current_user] = self
+        User.connected.each do |u, c|
+          c.render {:content => "#{current_user} joined the chat"}.to_json
+        end
       end
 
       def user_disconnected
-        ...
         User.connected.delete current_user
+        User.connected.each do |u, c|
+          c.render {:content => "#{current_user} left the chat"}.to_json
+        end
       end
     end
 
@@ -64,4 +70,5 @@
 
 - A library that uses flash to make the websocket connection
 - `https://github.com/gimite/web-socket-js`
-- Haven't used it yet cause I don't care
+- socket.io - cross browser websocket javascript lib
+- Haven't used either yet cause I don't care

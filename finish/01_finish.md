@@ -1,7 +1,7 @@
 !SLIDE smbullets
 ## Summary
 
-- Websockets / Cramp
+- Overview of Websockets / Cramp
 - Build basic chat application
 - Authentication (Richard Livsey - worth a pint?)
 - Extra stuff
@@ -12,3 +12,6 @@
 
 ### LRUG Nov 2010
 ### from @kalv who plays at @freerange
+### .
+### `http://github.com/kalv/yact`
+### `http://github.com/kalv/lrug-websockets`

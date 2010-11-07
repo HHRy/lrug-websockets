@@ -15,17 +15,17 @@
 
 # Websockets
 
+### (no IE - supports only some browsers)
+
 !SLIDE center
 
-# not IE
-
-### (supports only some browsers)
+# Cramp
 
 !SLIDE smbullets
 
 ## Structure of talk
 
-- Websockets / Cramp
+- Overview of Websockets / Cramp
 - Build basic chat application
 - Authentication (for you Richard Livsey)
 - Extra stuff

@@ -5,7 +5,7 @@
 !SLIDE smbullets
 
 ## Authentication
-- Websocket API outlines that cookies to be sent on websocket connection handshake
+- Websocket Spec outlines that cookies to be sent on websocket connection handshake
 - Backend can use this cookie to authenticate websocket connection
 - Frontend can set cookie
 - Cramp and Sinatra are rack - middleware
@@ -39,12 +39,6 @@
     require 'user'
 
     class Auth
-      module Helper
-        def current_user
-          request.env['user']
-        end
-      end
-
       def initialize(app)
         @app = app
       end
@@ -54,11 +48,17 @@
         @app.call(env)
       end
 
+      module Helper
+        def current_user
+          request.env['user']
+        end
+      end
+
       private
 
       def authenticate(env)
         request = Rack::Request.new(env)
-        token = request.cookies["token"] || request.params["token"]
+        token = request.cookies["token"]
         current_user = User.authenticate_by_token(token)
         current_user ? current_user : nil
       end

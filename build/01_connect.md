@@ -84,7 +84,7 @@
       %form{:id => "send"}
         %input{:type => "text"}
         %br
-        %input{:type => "button", :value => "send"}
+        %input{:type => "submit", :value => "send"}
 
 !SLIDE
 
@@ -107,10 +107,12 @@
 ## stylesheets/style.css
 
     @@@ Css
+    /* Insert cool awesome css here */
+    
     .messages {
       /* Make me look like a chat window */
     }
-    ul {
+    ul.message {
       /* I'm a new message make me look pretty */
     }
 

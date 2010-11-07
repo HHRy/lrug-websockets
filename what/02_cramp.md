@@ -3,9 +3,8 @@
 # Cramp
 - Created by Pratik - @lifo
 - An asynchronous framework
-- Easy to develop real time applications
-- Has websockets support, woo hoo!
 - EventMachine loop
+- Websockets support, woo hoo!
 
 !SLIDE
     @@@ Ruby
@@ -66,12 +65,12 @@
 
 !SLIDE smbullets
 ## Other hooks
-- periodic timer will run something ever x secs
-- There are other hooks you can use like before_start on_start for the async process
+- `periodic_timer` will run something ever x secs
+- There are other hooks you can use like `before_start` `on_start`
 
       @@@ Ruby
       periodic_timer :say_hello, :every => 2
-      def send_update
+      def say_hello
         render "hello you're still online"
       end
 
