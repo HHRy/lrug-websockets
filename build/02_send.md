@@ -2,27 +2,75 @@
 
 ## Next - send a message
 
+!SLIDE smbullets
+
+## Backend (websocket.rb)
+
+    @@@ Ruby
+    class User
+      def self.connected
+        @connected ||= []
+      end
+    end
+
+    class Websocket < Cramp::Websocket
+      on_start :user_connected
+      on_finish :user_disconnected
+
+
+      def user_connected
+        render {:content => "Welcome to yact, chat away",
+          :user => "yact"}.to_json
+        # record all chat users connected
+        User.connected << self
+      end
+
+      def user_disconnected
+        # remove chat user from connection
+        User.connected.delete self
+      end
+    end
+
 !SLIDE
-So javascript document.ready( this.socket = ws://host:port/chat )
 
-onmessage for the welcome message simply push into a chat window.
-console.log(message)
-// simplify the javascript so that it's smaller for presentation, so no classes, etc.
+    @@@ Ruby
+    class Websocket < Cramp::Websocket
+      ...
+      on_data :message_received
 
-Next sending a chat message
-- send text through the socket.
-(JAVASCRIPT)
+      def message_received(data)
+        # send message to all connected users
+        User.connected.each do |c|
+          c.render data
+        end
+      end
+    end
 
-Then in crap receive_data receive_message
-- Need to send it to all connected clients, so have to modify on_connect to make sure we know who is connected:
-- clients << self
-And also when people leave
-clients.delete(self)
-- Then iterate over those clients to render the received_message.
+!SLIDE
 
-Improve it a little.
-- Define a simple structure for a message, in this example, from, when, content,
-- Will be sent to the server in JSON.
-- (show the code)
+## javascripts/application.js
 
-- Therefore update the server for on_connect to be structured too.
+    @@@ Javascript
+    var Yact = {
+      ...
+      send: function(data) {
+        setTimeout(function(){
+          Yact.socket.send(JSON.stringify(data));
+        },100);
+      }
+    }
+
+    $(document).ready(function(){
+      ...
+      $("form#send").submit(function(){
+        Yact.send({"content":$("input[type='text']").val(), "user":"joe"});
+        return false;
+      });
+    });
+
+!SLIDE smbullets
+
+## Reload backend and frontend
+
+- Done - You will be able to send a message
+- Other connected users will see the message

@@ -3,6 +3,7 @@
   "sections": [ 
     {"section":"intro"},
     {"section":"what"},
-    {"section":"build"}
+    {"section":"build"},
+    {"section":"auth"}
   ]
 }

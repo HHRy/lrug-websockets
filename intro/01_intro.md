@@ -27,7 +27,6 @@
 
 - Websockets / Cramp
 - Build basic chat application
-- A bit on testing
 - Authentication (for you Richard Livsey)
 - Extra stuff
 - What about other browsers?

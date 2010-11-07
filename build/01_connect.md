@@ -31,7 +31,9 @@
     require 'rubygems'
     require 'bundler'
     Bundler.setup
+
     require 'cramp'
+    require 'yajl/json_gem'
 
     Cramp::Websocket.backend = :thin
 
@@ -39,9 +41,8 @@
       on_start :user_connected
 
       def user_connected
-        puts "A user has connected"
-        render_json({:content => "Welcome to yact, chat away", 
-          :user => "yact", :when => Time.now})
+        render {:content => "Welcome to yact, chat away",
+          :user => "yact"}.to_json
       end
     end
 
@@ -57,7 +58,7 @@
     >> Listening on 0.0.0.0:4000, CTRL+C to stop
 
 !SLIDE
-## Frontend (sintra)
+## Frontend (Sinatra)
 
     @@@ Ruby
     # frontend.rb
@@ -80,9 +81,10 @@
     %h2 YACT - Yet another chat thing
     .messages
     .post_message
-      %textarea
-      %br
-      %input{:type => "button", :value => "send"}
+      %form{:id => "send"}
+        %input{:type => "text"}
+        %br
+        %input{:type => "button", :value => "send"}
 
 !SLIDE
 
@@ -132,9 +134,9 @@
       },
       create_message: function(message) {
         var data = JSON.parse(message);
-        return "<ul class='message'><li class='from'><p>" + data["user"] + 
-          "</p></li><li class='content'><p>" + data["content"] + 
-          "</p></li><li class='when'><p>" + data["when"] + "</p></li></ul>";
+        return "<ul class='message'><li class='from'><p>" + data["user"] +
+          "</p></li><li class='content'><p>" + data["content"] +
+          "</p></li></ul>";
       }
     }
 
