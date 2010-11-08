@@ -19,8 +19,8 @@
 
 
       def user_connected
-        render {:content => "Welcome to yact, chat away",
-          :user => "yact"}.to_json
+        render ({:content => "Welcome to yact, chat away",
+          :user => "yact"}).to_json
         # record all chat users connected
         User.connected << self
       end
@@ -48,7 +48,7 @@
 
 !SLIDE
 
-## javascripts/application.js
+## public/javascripts/application.js
 
     @@@ Javascript
     var Yact = {

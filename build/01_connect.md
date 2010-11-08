@@ -22,6 +22,23 @@
 ## First - connect to websocket
 - To get a 'welcome message from the server'
 
+!SLIDE
+
+## Gemfile
+
+    @@@ Ruby
+    source :rubygems
+    
+    # use latest cramp
+    gem "cramp", :git => "http://github.com/lifo/cramp.git"
+    gem "rack"
+    gem "thin"
+
+    gem "sinatra"
+    gem "haml"
+
+    gem "yajl-ruby"
+
 !SLIDE smbullets
 
 ## Backend (Cramp)
@@ -41,8 +58,8 @@
       on_start :user_connected
 
       def user_connected
-        render {:content => "Welcome to yact, chat away",
-          :user => "yact"}.to_json
+        render ({:content => "Welcome to yact, chat away",
+          :user => "yact"}).to_json
       end
     end
 
@@ -75,7 +92,7 @@
 
 !SLIDE
 
-## public/index.haml
+## views/index.haml
 
     @@@ Haml
     %h2 YACT - Yet another chat thing
@@ -88,7 +105,7 @@
 
 !SLIDE
 
-## public/layout.haml
+## views/layout.haml
 
     @@@ Small
     !!!
@@ -104,7 +121,7 @@
         = yield
 
 !SLIDE
-## stylesheets/style.css
+## public/stylesheets/style.css
 
     @@@ Css
     /* Insert cool awesome css here */
@@ -118,7 +135,7 @@
 
 !SLIDE
 
-## javascripts/application.js (interesting bit)
+## public/javascripts/application.js (interesting bit)
 
 
     @@@ Javascript

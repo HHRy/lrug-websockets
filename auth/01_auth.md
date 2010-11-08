@@ -101,7 +101,6 @@
 
     class Websocket < Cramp::Websocket
       ...
-
       def user_connected
         if current_user
           render ({:content => "Welcome to yact, chat away",
@@ -113,10 +112,30 @@
           finish
         end
       end
+
+      def message_received(data)
+        m = JSON.parse(data).merge(:user => current_user.username)
+        User.connected.each do |c|
+          c.render m.to_json
+        end
+      end
       ...
     end
 
     Rack::Handler::Thin.run Auth.new(Websocket), :Port => 4000
+
+!SLIDE
+
+## public/javascripts/application.js
+  
+    @@@ Javascript
+    $(document).ready(function(){
+      Yact.initialize();
+      $("form#send").submit(function(){
+        // Remove user
+        Yact.send({"content":$("input[type='text']").val()});
+      });
+    });
 
 !SLIDE smbullets
 ## Auth findings

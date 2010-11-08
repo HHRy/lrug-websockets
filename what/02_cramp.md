@@ -74,3 +74,13 @@
         render "hello you're still online"
       end
 
+!SLIDE smbullets
+
+## Ensure using latest Cramp
+
+- Master `github.com/lifo/cramp` websocket handshake broken:
+
+    `Error during WebSocket handshake:
+    'sec-websocket-origin' header is missing`
+    
+- Fixed by `github.com/indrekj/cramp`
