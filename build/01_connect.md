@@ -14,8 +14,8 @@
 !SLIDE smbullets
 
 ## Why not all in Cramp?
-- You probably can, I just wanted to concentrate on how cramp for websockets in this talk.
-- But also cause Cramp != easy views or templates
+- You probably can, I wanted to concentrate on how cramp does websockets in this talk.
+- Also cause Cramp != easy views or templates
 
 !SLIDE smbullets
 
@@ -30,7 +30,7 @@
     source :rubygems
     
     # use latest cramp
-    gem "cramp", :git => "http://github.com/lifo/cramp.git"
+    gem "cramp", :git => "http://github.com/indrekj/cramp.git"
     gem "rack"
     gem "thin"
 

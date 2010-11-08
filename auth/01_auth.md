@@ -8,11 +8,11 @@
 - Websocket Spec outlines that cookies to be sent on websocket connection handshake
 - Backend can use this cookie to authenticate websocket connection
 - Frontend can set cookie
-- Cramp and Sinatra are rack - middleware
+- Cramp and Sinatra are rack - create some middleware
 
 !SLIDE
 
-## user.rb
+## Temp user - user.rb
 
     @@@ Ruby
     class User
@@ -33,7 +33,7 @@
 
 !SLIDE
 
-## auth.rb - rack middleware
+## Rack middleware - auth.rb
 
     @@@ Ruby
     require 'user'
@@ -79,7 +79,9 @@
       haml :index
     end
 
-    get '/login' do haml :login end
+    get '/login' do
+      haml :login
+    end
 
     post '/login' do
       if user = User.authenticate(params[:username], params[:password])
@@ -95,7 +97,6 @@
 ## backend.rb
 
     @@@ Ruby
-    ...
     require 'auth'
     include Auth::Helper
 
@@ -119,7 +120,6 @@
           c.render m.to_json
         end
       end
-      ...
     end
 
     Rack::Handler::Thin.run Auth.new(Websocket), :Port => 4000

@@ -7,6 +7,9 @@
 - Websockets support, woo hoo!
 
 !SLIDE
+
+## Simple Action
+
     @@@ Ruby
     # example from repo
     require "rubygems"
@@ -26,13 +29,9 @@
 
     Rack::Handler::Thin.run WelcomeController, :Port => 3000
 
-!SLIDE smbullets
-
-## Thin / Rainbows
-
 !SLIDE
 
-## Route to different actions
+## Can route to different actions
 
     @@@ Ruby
     routes = HttpRouter.new do

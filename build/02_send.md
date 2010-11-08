@@ -4,7 +4,7 @@
 
 !SLIDE smbullets
 
-## Backend (websocket.rb)
+## Store connected users (websocket.rb)
 
     @@@ Ruby
     class User
@@ -33,6 +33,8 @@
 
 !SLIDE
 
+## Send data to all connected (websocket.rb)
+
     @@@ Ruby
     class Websocket < Cramp::Websocket
       ...
@@ -54,9 +56,7 @@
     var Yact = {
       ...
       send: function(data) {
-        setTimeout(function(){
-          Yact.socket.send(JSON.stringify(data));
-        },100);
+        Yact.socket.send(JSON.stringify(data));
       }
     }
 
